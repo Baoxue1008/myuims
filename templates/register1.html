@@ -1,0 +1,56 @@
+﻿
+<!DOCTYPE html>
+<html>
+<title>register</title>
+<head>
+		<meta charset="utf-8">
+		<link href="../../static/css/style2.css" rel='stylesheet' type='text/css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+ 
+<body>
+  <div class="header">
+	         <div class="logo">
+			<h1><img src="../../static/images/log3.jpg" alt=""></a></h1>
+		    </div>
+		    <div class="clear"></div>
+		    </div>
+	<div class="main">
+				 <!-----start-main---->
+				 <div class="inset">
+				 	<div class="social-icons">
+		    			 <div class="span"><a href="{% url 'login' %}"><img src="../../static/images/return.jpg" alt=""/><i>返回登录界面</i><div class="clear"></div></a></div>
+    					 <div class="span1"><a href="http://www.jlu.edu.cn/" target="_blank"><img src="../../static/images/school.jpg" alt=""/><i>了解更多信息</i><div class="clear"></div></a></div>
+    					 <div class="clear"></div>
+					</div>
+				 </div>	
+				 <h2>注册信息</h2>
+								<form action="" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+							<div class="lable">
+		                     	<SPAN class="u_logo"></SPAN>         
+		                     	<INPUT class="ipt" type="text" placeholder="ID" value=""> 
+		                     	<SPAN class="p_logo"></SPAN>         
+                        <INPUT class="ipt" id="password" type="password" placeholder="password" value="">   
+                         </div>
+		                    <div class="clear"> </div>
+		                    <div class="lable-2">
+		                     <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password ';}">
+							</div>
+							<div class="clear"> </div>
+							 <h3>注册前，请先确认 <span><a href="#">学校账户管理条项</a> <span></h3>
+								 <div class="submit">
+									<input type="submit" onclick="myFunction()" value="注册" >
+								</div>
+									<div class="clear"> </div>
+							 </form>
+		<!-----//end-main---->
+		</div>
+		 <!-----start-copyright---->
+	     <div class="copy-right">
+						<p>最终解释权为 <a href="http://www.jlu.edu.cn/" target="_blank">吉林大学</a>所有</p>
+					</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% if not request.user.is_authenticated %}
+<a href="{% url 'register' %}">注册</a>
+{% endif %}
+
+{% if request.user.is_authenticated %}
+    <p>{{ request.user }}您已经登录</p>
+    <h1>Bao</h1>
+    {% if messages %}
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+    {% endif %}
+    <a href="{% url 'indexstudent' %}">您是学生</a>
+    <a href="{% url 'indexteacher' %}">您是教师</a>
+    <a href="{% url 'index1' %}">主页</a>
+    <a href="{% url 'logout' %}">登出</a>
+{% else %}
+    <p>您还没有登录<a href="{% url 'login' %}">登录</a></p>
+{% endif %}
+</body>
+</html>

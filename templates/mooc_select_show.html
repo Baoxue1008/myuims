@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{#{{ my_course }}#}
+{% for mc in my_course %}
+    <p>{{ mc.course_name }},{{ mc.course_week }},{{ mc.course_time }}</p>
+{% endfor %}
+</body>
+</html>

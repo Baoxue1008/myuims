@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>开课号</th>
+    <th>课程名称</th>
+  </tr>
+{% for classes in ml %}
+  <tr>
+    <td>{{ classes.id }}</td>
+    <td><a href="{% url 'mooc_detail' id=classes.id %}">{{ classes.course_name }}</a></td>
+  </tr>
+{% endfor %}
+</table>
+</body>
+</html>

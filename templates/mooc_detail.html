@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{{ md.course_week }},{{ md.course_time }}
+<br>
+<a href="{% url 'course_add' id=md.id %}">添加课程</a>
+<br>
+<a href="{% url 'course_delete' id=md.id %}">退选课程</a>
+
+</body>
+</html>

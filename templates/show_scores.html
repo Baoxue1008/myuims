@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% for sc in my_scores %}
+    <p>{{  sc.course_id}},{{ sc.teacher_id }},{{ sc.value }}</p>
+{% endfor %}
+</body>
+</html>
