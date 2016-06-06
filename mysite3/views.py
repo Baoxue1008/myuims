@@ -13,23 +13,27 @@ from django.contrib.auth.decorators import login_required
 
 def login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/index/', content_type=RequestContext(request))
+        if Student.objects.filter(userid=request.user.id):
+            # 当前是学生
+            return HttpResponseRedirect('/index/', content_type=RequestContext(request))
+        else:
+            # 当前是教师
+            return HttpResponse('teacher')
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     user = auth.authenticate(username=username, password=password)
     if user is not None and user.is_active:
         auth.login(request, user)
-        return HttpResponseRedirect('/index/', content_type=RequestContext(request))
+        if Student.objects.filter(userid=request.user.id):
+            return HttpResponseRedirect('/index/', content_type=RequestContext(request))
+        else:
+            return HttpResponse('teacher')
     else:
-        return render_to_response('login2.html', context_instance=RequestContext(request))
+        return render_to_response('login.html', context_instance=RequestContext(request))
 
 
 def index(request):
-    return render_to_response('index.html', locals(), context_instance=RequestContext(request))
-
-
-def index1(request):
-    return render(request,'index1.html')
+    return render(request,'index.html')
 
 def schedule(request):
     return render(request,'schedule.html')
@@ -61,7 +65,7 @@ def indexteacher(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('/index/', content_type=RequestContext(request))
+    return HttpResponseRedirect('', content_type=RequestContext(request))
 
 def register(request):
     if request.method == 'POST':
