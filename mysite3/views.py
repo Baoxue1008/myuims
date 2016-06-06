@@ -47,6 +47,7 @@ def choose(request):
 def bill(request):
     return render(request,'bill.html')
 
+
 def news(request):
     return render(request,'news.html')
 
@@ -65,7 +66,7 @@ def indexteacher(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('', content_type=RequestContext(request))
+    return HttpResponseRedirect('/accounts/login/', content_type=RequestContext(request))
 
 def register(request):
     if request.method == 'POST':
