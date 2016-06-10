@@ -17,7 +17,7 @@ def login(request):
             return HttpResponseRedirect('/indexstudent/', content_type=RequestContext(request))
         else:
             # 当前是教师
-            return HttpResponse('teacher')
+            return HttpResponseRedirect('/indexteacher/', content_type=RequestContext(request))
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     user = auth.authenticate(username=username, password=password)
@@ -26,7 +26,7 @@ def login(request):
         if Student.objects.filter(userid=request.user.id):
             return HttpResponseRedirect('/indexstudent/', content_type=RequestContext(request))
         else:
-            return HttpResponse('teacher')
+            return HttpResponseRedirect('/indexteacher/', content_type=RequestContext(request))
     else:
         return render_to_response('login.html', context_instance=RequestContext(request))
 
@@ -35,9 +35,6 @@ def indexstudent(request):
     return render(request,'indexstudent.html')
 
 def indexteacher(request):
-    if not Teacher.objects.filter(userid=request.user.id):
-        messages.error(request,'您不是教师!')
-        return HttpResponseRedirect('/index/')
     return render(request,'indexteacher.html')
 
 def schedule(request):
@@ -52,14 +49,8 @@ def choose(request):
 def bill(request):
     return render(request,'bill.html')
 
-
 def news(request):
     return render(request,'news.html')
-
-
-
-
-
 
 def logout(request):
     auth.logout(request)
@@ -73,8 +64,10 @@ def register(request):
             return HttpResponseRedirect('/accounts/login/', content_type=RequestContext(request))
     else:
         form = UserCreationForm()
-    return render_to_response('register1.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('register.html', locals(), context_instance=RequestContext(request))
 
 def course_canceled(request):
-    cs = Course.objects.filter(course_teach__isnull = True)
-    return render(request,'course_canceled.html',{'cs':cs})
+    noteach = Course.objects.filter(course_teach__isnull = True)
+    allCourse = Course.objects.all()
+    insuffStu = [ c.course_name for c in allCourse if c.course_choose.count()<3 ]
+    return render(request,'course_canceled.html',{'noteach':noteach, 'insuffStu':insuffStu})

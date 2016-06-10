@@ -97,11 +97,12 @@ def show_my_course(request):
     if len(student) != 0:
         student = student[0]
         my_course = student.course_set.all().order_by('id')
-        return render_to_response('mooc_select_show.html', {'my_course': my_course})
+        sumPrice = sum([c.course_price for c in my_course])
+        return render(request,'mooc_select_show.html', {'my_course': my_course,'sumPrice':sumPrice})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')
-        return render_to_response('teach_select_show.html', {'my_course': my_course})
+        return render(request,'teach_select_show.html', {'my_course': my_course})
 
 
 @login_required

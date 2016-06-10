@@ -44,6 +44,7 @@ class Course(models.Model):
     course_teach = models.ManyToManyField(Teacher, blank=True)
     course_week = models.CharField(max_length=50,blank=True,null=True)
     course_time = models.TimeField(blank=True,null=True)
+    course_price = models.IntegerField(blank=True,null=True)
     def __unicode__(self):
         return self.course_name
 
