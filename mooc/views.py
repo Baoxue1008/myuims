@@ -29,6 +29,7 @@ def mooc_detail(request, id):
 def course_add(request, id):
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
+    dir = '/mooc/' + id
     if len(student) != 0:
         dir = '/mooc/' + id
         student = student[0]
@@ -39,7 +40,6 @@ def course_add(request, id):
             course.course_choose.add(student)
             course.save()
             messages.success(request, "选课成功")
-        return HttpResponseRedirect(dir)
     else:
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
@@ -49,15 +49,15 @@ def course_add(request, id):
             course.course_teach.add(teacher)
             course.save()
             messages.success(request, "选课成功")
-        return HttpResponse('teacher add course')
+    return HttpResponseRedirect(dir)
+
 
 @login_required
 def course_delete(request, id):
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
+    dir = '/mooc/' + id
     if len(student) != 0:
-        dir = '/mooc/' + id
-
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
         if not verify:
@@ -66,7 +66,6 @@ def course_delete(request, id):
             course.course_choose.remove(student)
             course.save()
             messages.success(request, "删除课程成功")
-        return HttpResponseRedirect(dir)
     else:
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
@@ -77,7 +76,7 @@ def course_delete(request, id):
             course.course_teach.remove(teacher)
             course.save()
             messages.success(request, "取消授课成功")
-        return HttpResponse('teacher delete course')
+    return HttpResponseRedirect(dir)
 
 @login_required
 def show_scores(request):
@@ -113,7 +112,6 @@ def show_who_choose_this_class(request, id):
 
 @login_required
 def set_scores(request,id):
-
     course = Course.objects.get(id=id)
     students = course.course_choose.all()
     stunum = len(students)
@@ -140,7 +138,7 @@ def set_scores(request,id):
                         score.save()
                     cnt += 1
             messages.success(request,'修改成绩成功')
-        return HttpResponseRedirect('/indexteacher/')
+        return HttpResponseRedirect('/index/show/')
     else:
         return render(request,'set_scores.html', {'formset': ScoreFormSet(), 'students':students,'id': id})
 
