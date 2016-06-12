@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="btm_border">
-<div class="h_bg">
+<div class="h_bgz">
 <div class="wrap">
 	<div class="header">
 		<div class="logo">
@@ -29,13 +29,12 @@
 		<div class="clear"></div>
 	</div>
 	<div class='h_btm'>
-		<div class='cssmenu'>
+		<div class='cssmenuz'>
 			<ul>
-			    <li><a href="{% url 'indexstudent' %}"><span>主页</span></a></li>
+			    <li><a href="{% url 'indexteacher' %}"><span>主页</span></a></li>
 			    <li><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
-			    <li class="active"><a href="{% url 'mooc_list' %}"><span>选课</span></a></li>
-			    <li><a href="{% url 'grade' %}"><span>成绩</span></a></li>
-			    <li class='has-sub'><a href="{% url 'bill' %}"><span>缴费</span></a></li>
+			    <li class="active"><a href="{% url 'teacher_course_list'%}"><span>授课</span></a></li>
+			    <li><a href="{% url 'show_scores' %}"><span>打分</span></a></li>
 			    <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
 			 	<div class="clear"></div>
 			 </ul>
@@ -72,7 +71,7 @@
           {% for classes in ml %}
              <tr>
             <td  WIDTH=200 >{{ classes.id }}</td>
-            <td><a href="{% url 'mooc_detail' id=classes.id %}">{{ classes.course_name }}</a></td>
+            <td><a href="{% url 'teacher_course_detail' id=classes.id %}">{{ classes.course_name }}</a></td>
           </tr>
          {% endfor %}
           </table>

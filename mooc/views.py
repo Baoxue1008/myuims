@@ -11,19 +11,30 @@ from django.contrib.auth.models import User
 
 
 @login_required
-def mooc_list(request):
+def student_course_list(request):
     ml = Course.objects.all()
-    return render_to_response('mooc_list.html', {'ml': ml})
-
+    return render_to_response('student_course_list.html', {'ml': ml})
 
 @login_required
-def mooc_detail(request, id):
+def teacher_course_list(request):
+    ml = Course.objects.all()
+    return render_to_response('teacher_course_list.html', {'ml': ml})
+
+@login_required
+def student_course_detail(request, id):
     try:
         md = Course.objects.get(id=str(id))
     except Course.DoesNotExist:
         raise Http404
-    return render_to_response('mooc_detail.html', {'md': md})
+    return render_to_response('student_course_detail.html', {'md': md})
 
+@login_required
+def teacher_course_detail(request, id):
+    try:
+        md = Course.objects.get(id=str(id))
+    except Course.DoesNotExist:
+        raise Http404
+    return render_to_response('teacher_course_detail.html', {'md': md})
 
 @login_required
 def course_add(request, id):
@@ -97,11 +108,11 @@ def show_my_course(request):
         student = student[0]
         my_course = student.course_set.all().order_by('id')
         sumPrice = sum([c.course_price for c in my_course])
-        return render(request,'mooc_select_show.html', {'my_course': my_course,'sumPrice':sumPrice})
+        return render(request,'student_select_show.html', {'my_course': my_course,'sumPrice':sumPrice})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.all().order_by('id')
-        return render(request,'teach_select_show.html', {'my_course': my_course})
+        return render(request,'teacher_select_show.html', {'my_course': my_course})
 
 
 @login_required

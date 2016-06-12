@@ -6,6 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
 <link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<SCRIPT src="../../static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../static/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../../static/js/jquery.nivo.slider.js"></script>
+<!--slider-->
+<link href="../../static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 <style type="text/css">
 body{
@@ -61,7 +66,7 @@ font-size:15px;
 	top: -22px;
 	left: 319px;
 }
-.right_handinging{
+.right_handing{
 	background: url("../../static/images/right_handing.png") no-repeat;
 	width: 30px;
 	height: 20px;
@@ -153,16 +158,16 @@ $(function(){
 	//得到焦点
 	$("#password").focus(function(){
 		$("#left_hand").animate({
-			left: "150",
-			top: " -38"
+			left: "330",
+			top: " -36"
 		},{step: function(){
 			if(parseInt($("#left_hand").css("left"))>140){
 				$("#left_hand").attr("class","left_hand");
 			}
 		}}, 2000);
 		$("#right_hand").animate({
-			right: "-64",
-			top: "-38px"
+			right: "-244",
+			top: "-36px"
 		},{step: function(){
 			if(parseInt($("#right_hand").css("right"))> -70){
 				$("#right_hand").attr("class","right_hand");
@@ -179,19 +184,23 @@ $(function(){
 });
 function bigImg(x)
 {
+if (event && event.stopPropagation)
+            event.stopPropagation()
+        else
+            window.event.cancelBubble=true
 $("#left_hand").animate({
-			left: "150",
-			top: " -38"
+			left: "330",
+			top: " -36"
 		},{step: function(){
-			if(parseInt($("#left_hand").css("left"))>140){
+			if(parseInt($("#left_hand").css("left"))>320){
 				$("#left_hand").attr("class","left_hand");
 			}
 		}}, 2000);
 		$("#right_hand").animate({
-			right: "-64",
-			top: "-38px"
+			right: "-244",
+			top: "-36px"
 		},{step: function(){
-			if(parseInt($("#right_hand").css("right"))> -70){
+			if(parseInt($("#right_hand").css("right"))> -250){
 				$("#right_hand").attr("class","right_hand");
 			}
 		}}, 2000);
@@ -199,19 +208,24 @@ $("#left_hand").animate({
 
 function normalImg(x)
 {
+		if (event && event.stopPropagation)
+            event.stopPropagation();
+        else
+            window.event.cancelBubble=true;
+		event.stopPropagation();
         $("#left_hand").attr("class","initial_left_hand");
-		$("#left_hand").attr("style","left:100px;top:-12px;");
+		$("#left_hand").attr("style","left:280px;top:-10px;");
 		$("#right_hand").attr("class","initial_right_hand");
-		$("#right_hand").attr("style","right:-112px;top:-12px");
+		$("#right_hand").attr("style","right:-292px;top:-10px");
 }
 </SCRIPT>
 <body>
 <div class="btm_border">
-<div class="h_bg">
+<div class="h_bgz">
 <div class="wrap">
 	<div class="header">
 		<div class="logo">
-			<h1><a href="{% url 'index' %}"><img src="../../static/images/log3.jpg" alt=""></a></h1>
+			<h1><a href="{% url 'indexstudent' %}"><img src="../../static/images/log3.jpg" alt=""></a></h1>
 		</div>
 		<div class="social-icons">
 			<ul>
@@ -227,13 +241,12 @@ function normalImg(x)
 		<div class="clear"></div>
 	</div>
 	<div class='h_btm'>
-		<div class='cssmenu'>
+		<div class='cssmenuz'>
 			<ul>
-			    <li><a href="{% url 'indexstudent' %}"><span>主页</span></a></li>
+			    <li><a href="{% url 'indexteacher' %}"><span>主页</span></a></li>
 			    <li><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
-			    <li class="active"><a href="{% url 'mooc_list' %}"><span>选课</span></a></li>
-			    <li><a href="{% url 'grade' %}"><span>成绩</span></a></li>
-			    <li class='has-sub'><a href="{% url 'bill' %}"><span>缴费</span></a></li>
+			    <li class="active"><a href="{% url 'teacher_course_list'%}"><span>授课</span></a></li>
+			    <li><a href="{% url 'show_scores' %}"><span>打分</span></a></li>
 			    <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
 			 	<div class="clear"></div>
 			 </ul>
@@ -268,7 +281,6 @@ function normalImg(x)
 <DIV class="initial_right_hand" id="right_hand"></DIV></DIV>
 </DIV>
 		<div id="stylized" class="myform">
-
              <h1>课程信息</h1>
 			</br>
 			<div >
@@ -290,14 +302,16 @@ function normalImg(x)
 			</br>
 			<SPAN style="float: right;">
 			<p>
-               <a onmousemove="bigImg(this)" onmouseout="normalImg(this)" style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="{% url 'course_add' id=md.id %}">添加课程</a>
-			    <a style="background: rgb(0, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="{% url 'course_delete' id=md.id %}">退选课程</a>
-			    <a style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"href="{% url 'mooc_list'%}">返回</a>
+               <a onmouseover="bigImg(this)" style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="{% url 'course_add' id=md.id %}">添加课程</a>
+			    <a  onmouseover="normalImg(this)"  style="background: rgb(0, 142, 173);padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="{% url 'course_delete' id=md.id %}">退选课程</a>
+			    <a style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"href="{% url 'teacher_course_list'%}">返回</a>
 			</p>
 			</SPAN>
                 <div class="spacer"></div>
-
+                   <p>{{messages}}</p>
            </div>
+
+
 					<div class="specials">
 
 	</div>
