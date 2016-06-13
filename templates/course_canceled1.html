@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>没有教师：</p>
+{% for c in noteach %}
+    <p>{{c}}</p>
+{% endfor %}
+
+
+<p>选课不足3人:</p>
+{% for c in insuffStu %}
+    {{c}}
+{% endfor %}
+
+</body>
+</html>

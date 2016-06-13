@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    {% for st in students %}
+        <p>{{ st }}</p>
+    {% endfor %}
+
+    <form action="/set_scores/{{ id }}" method="post">{% csrf_token %}
+        {{ ScoreFormSet.management_form }}
+        {{ formset }}
+    <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
