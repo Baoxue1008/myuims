@@ -22,6 +22,7 @@ import mooc.views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^indexstudent/$', indexstudent, name='indexstudent'),
+    url(r'^indexteacher/$', indexteacher, name='indexteacher'),
     url(r'^accounts/register/$', register, name='register'),
     url(r'^accounts/schedule/$', schedule, name='schedule'),
     url(r'^accounts/grade/$', grade, name='grade'),
@@ -36,8 +37,6 @@ urlpatterns = [
     url(r'^$', login, name='login'),
     url(r'^mooc/', include('mooc.urls')),
     url(r'^index/show$', 'mooc.views.show_my_course', name='show_my_course'),
-    url(r'^indexstudent$',indexstudent, name='indexstudent'),
-    url(r'^indexteacher$',indexteacher, name='indexteacher'),
     url(r'^course_canceled$',course_canceled, name='course_canceled'),
     url(r'^show_scores$',mooc.views.show_scores, name='show_scores'),
     url(r'^set_scores/(?P<id>\d+)$',mooc.views.set_scores, name='set_scores'),
