@@ -40,5 +40,4 @@ urlpatterns = [
     url(r'^course_canceled$',course_canceled, name='course_canceled'),
     url(r'^show_scores$',mooc.views.show_scores, name='show_scores'),
     url(r'^set_scores/(?P<id>\d+)$',mooc.views.set_scores, name='set_scores'),
-
 ]
