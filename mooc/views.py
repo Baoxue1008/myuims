@@ -40,9 +40,8 @@ def teacher_course_detail(request, id):
 def course_add(request, id):
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
-    dir = '/mooc/' + id
     if len(student) != 0:
-        dir = '/mooc/' + id
+        dir = '/mooc/student/' + id
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
         if verify:
@@ -52,6 +51,7 @@ def course_add(request, id):
             course.save()
             messages.success(request, "选课成功")
     else:
+        dir = '/mooc/teacher/' + id
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
         if verify:
@@ -67,8 +67,8 @@ def course_add(request, id):
 def course_delete(request, id):
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
-    dir = '/mooc/' + id
     if len(student) != 0:
+        dir = '/mooc/student/' + id
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
         if not verify:
@@ -78,6 +78,7 @@ def course_delete(request, id):
             course.save()
             messages.success(request, "删除课程成功")
     else:
+        dir = '/mooc/teacher/' + id
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
 

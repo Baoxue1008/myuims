@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from views import *
 urlpatterns = [
+    url(r'^student_course_list/$', student_course_list, name='student_course_list'),
+    url(r'^student/(?P<id>\d+)/$', student_course_detail, name='student_course_detail'),
+    url(r'^teacher_course_list/$', teacher_course_list, name='teacher_course_list'),
+    url(r'^teacher/(?P<id>\d+)/$', teacher_course_detail, name='teacher_course_detail'),
     url(r'^(?P<id>\d+)/add$', course_add, name='course_add'),
     url(r'^(?P<id>\d+)/delete$', course_delete, name='course_delete'),
     url(r'^(?P<id>\d+)/mates$', show_who_choose_this_class, name='show_who_choose_this_class'),

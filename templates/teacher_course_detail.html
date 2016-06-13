@@ -5,12 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
-<link href="../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<SCRIPT src="../../static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="../../static/js/jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="../../static/js/jquery.nivo.slider.js"></script>
+<link href="../../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<SCRIPT src="../../../static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../../static/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../../../static/js/jquery.nivo.slider.js"></script>
 <!--slider-->
-<link href="../../static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+<link href="../../../static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
 </head>
 <style type="text/css">
 body{
@@ -19,7 +19,7 @@ font-size:15px;
 }
 
 .tou{
-	background: url("../../static/images/tou.png") no-repeat;
+	background: url("../../../static/images/tou.png") no-repeat;
 	width: 97px;
 	height: 92px;
 	position: absolute;
@@ -27,7 +27,7 @@ font-size:15px;
 	left: 320px;
 }
 .initial_left_hand{
-	background: url("../../static/images/hand.png") no-repeat;
+	background: url("../../../static/images/hand.png") no-repeat;
 	width: 30px;
 	height: 20px;
 	position: absolute;
@@ -35,7 +35,7 @@ font-size:15px;
 	left: 280px;
 }
 .initial_right_hand{
-	background: url("../../static/images/hand.png") no-repeat;
+	background: url("../../../static/images/hand.png") no-repeat;
 	width: 30px;
 	height: 20px;
 	position: absolute;
@@ -43,7 +43,7 @@ font-size:15px;
 	right: -292px;
 }
 .left_hand{
-	background: url("../../static/images/left_hand.png") no-repeat;
+	background: url("../../../static/images/left_hand.png") no-repeat;
 	width: 32px;
 	height: 37px;
 	position: absolute;
@@ -51,7 +51,7 @@ font-size:15px;
 	left: 330px;
 }
 .right_hand{
-	background: url("../../static/images/right_hand.png") no-repeat;
+	background: url("../../../static/images/right_hand.png") no-repeat;
 	width: 32px;
 	height: 37px;
 	position: absolute;
@@ -59,7 +59,7 @@ font-size:15px;
 	right: -244px;
 }
 .left_handing{
-	background: url("../../static/images/left-handing.png") no-repeat;
+	background: url("../../../static/images/left-handing.png") no-repeat;
 	width: 30px;
 	height: 20px;
 	position: absolute;
@@ -67,7 +67,7 @@ font-size:15px;
 	left: 319px;
 }
 .right_handing{
-	background: url("../../static/images/right_handing.png") no-repeat;
+	background: url("../../../static/images/right_handing.png") no-repeat;
 	width: 30px;
 	height: 20px;
 	position: absolute;
@@ -225,7 +225,7 @@ function normalImg(x)
 <div class="wrap">
 	<div class="header">
 		<div class="logo">
-			<h1><a href="{% url 'indexstudent' %}"><img src="../../static/images/log3.jpg" alt=""></a></h1>
+			<h1><a href="{% url 'indexteacher' %}"><img src="../../../static/images/log4.jpg" alt=""></a></h1>
 		</div>
 		<div class="social-icons">
 			<ul>
@@ -246,7 +246,6 @@ function normalImg(x)
 			    <li><a href="{% url 'indexteacher' %}"><span>主页</span></a></li>
 			    <li><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
 			    <li class="active"><a href="{% url 'teacher_course_list'%}"><span>授课</span></a></li>
-			    <li><a href="{% url 'show_scores' %}"><span>打分</span></a></li>
 			    <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
 			 	<div class="clear"></div>
 			 </ul>
