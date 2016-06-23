@@ -42,9 +42,18 @@ class Course(models.Model):
     course_name = models.CharField(max_length=50)
     course_choose = models.ManyToManyField(Student, blank=True)
     course_teach = models.ManyToManyField(Teacher, blank=True)
-    course_week = models.CharField(max_length=50,blank=True,null=True)
-    course_time = models.TimeField(blank=True,null=True)
+
+
+    WEEK_CHOICE = (('Mon','Mon'),('Tue','Tue'), ('Wed','Wed') ,('Thur','Thur'),('Fri','Fri'),('Sat','Sat'),('Sun','Sun'))
+    course_week = models.CharField(max_length=50,blank=True,null=True,choices=WEEK_CHOICE)
+
+    TIME_CHOICE = (('1st','1st'),('2nd','2nd'),('3rd','3rd'),('4th','4th'),('5th','5th'),('6th','6th'),('7th','7th'),('8th','8th'))
+    course_time = models.CharField(max_length=50,blank=True,null=True,choices=TIME_CHOICE)
+
     course_price = models.IntegerField(blank=True,null=True)
+
+    TERM_CHOICE = TIME_CHOICE
+    course_term = models.CharField(max_length=50,blank=True,null=True,choices=TERM_CHOICE)
     def __unicode__(self):
         return self.course_name
 

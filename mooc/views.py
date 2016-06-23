@@ -13,12 +13,12 @@ from django.contrib.auth.models import User
 @login_required
 def student_course_list(request):
     ml = Course.objects.all()
-    return render_to_response('student_course_list.html', {'ml': ml})
+    return render(request,'student_course_list.html', {'ml': ml})
 
 @login_required
 def teacher_course_list(request):
     ml = Course.objects.all()
-    return render_to_response('teacher_course_list.html', {'ml': ml})
+    return render(request,'teacher_course_list.html', {'ml': ml})
 
 @login_required
 def student_course_detail(request, id):
@@ -26,7 +26,7 @@ def student_course_detail(request, id):
         md = Course.objects.get(id=str(id))
     except Course.DoesNotExist:
         raise Http404
-    return render_to_response('student_course_detail.html', {'md': md})
+    return render(request,'student_course_detail.html', {'md': md})
 
 @login_required
 def teacher_course_detail(request, id):
@@ -34,7 +34,7 @@ def teacher_course_detail(request, id):
         md = Course.objects.get(id=str(id))
     except Course.DoesNotExist:
         raise Http404
-    return render_to_response('teacher_course_detail.html', {'md': md})
+    return render(request,'teacher_course_detail.html', {'md': md})
 
 @login_required
 def course_add(request, id):
