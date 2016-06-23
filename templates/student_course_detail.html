@@ -1,0 +1,376 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Course detail</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+<link href="../../../static/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<SCRIPT src="../../../static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../../static/js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../../../static/js/jquery.nivo.slider.js"></script>
+<!--slider-->
+<link href="../../../static/css/slider.css" rel="stylesheet" type="text/css" media="all"/>
+</head>
+<style type="text/css">
+body{
+font-family: Tahoma,Verdana, Arial, Helvetica, sans-serif;
+font-size:15px;
+}
+
+.tou{
+	background: url("../../../static/images/tou.png") no-repeat;
+	width: 97px;
+	height: 92px;
+	position: absolute;
+	top: -85px;
+	left: 320px;
+}
+.initial_left_hand{
+	background: url("../../../static/images/hand.png") no-repeat;
+	width: 30px;
+	height: 20px;
+	position: absolute;
+	top: -10px;
+	left: 280px;
+}
+.initial_right_hand{
+	background: url("../../../static/images/hand.png") no-repeat;
+	width: 30px;
+	height: 20px;
+	position: absolute;
+	top: -10px;
+	right: -292px;
+}
+.left_hand{
+	background: url("../../../static/images/left_hand.png") no-repeat;
+	width: 32px;
+	height: 37px;
+	position: absolute;
+	top: -36px;
+	left: 330px;
+}
+.right_hand{
+	background: url("../../../static/images/right_hand.png") no-repeat;
+	width: 32px;
+	height: 37px;
+	position: absolute;
+	top: -36px;
+	right: -244px;
+}
+.left_handing{
+	background: url("../../../static/images/left-handing.png") no-repeat;
+	width: 30px;
+	height: 20px;
+	position: absolute;
+	top: -22px;
+	left: 319px;
+}
+.right_handing{
+	background: url("../../../static/images/right_handing.png") no-repeat;
+	width: 30px;
+	height: 20px;
+	position: absolute;
+	top: -19px;
+	left: 390px;
+}
+p, h1, form, button{border:0; margin:0; padding:0;}
+.spacer{clear:both; height:1px;}
+/* ———– My Form ———– */
+.myform{
+margin:0 auto;
+width:400px;
+padding:20px;
+}
+
+/* ———– stylized ———– */
+
+
+#stylized{
+border:solid 2px #b7ddf2;
+background:#ebf4fb;
+}
+
+#stylized h1 {
+font-size:16px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+#stylized p{
+font-size:12px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+
+#stylized label{
+display:block;
+font-weight:bold;
+text-align:right;
+width:140px;
+float:left;
+}
+
+#stylized .small{
+color:#666666;
+display:block;
+font-size:11px;
+font-weight:normal;
+text-align:right;
+width:140px;
+}
+
+#stylized input{
+float:left;
+font-size:15px;
+padding:4px 2px;
+border:solid 1px #aacfe4;
+width:200px;
+margin:2px 0 20px 10px;
+}
+
+#stylized .sub{
+clear:both;
+margin-left:150px;
+width:120px;
+height:32px;
+line-height:20px;
+border:1px solid #8b9c56;
+background:url("../images/bt_bg.gif") 0px -64px;
+text-align:center;
+color:#336600;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.red{
+color:#ff0000;
+}
+.blue{
+color:#0000FF;
+}
+</style>
+<SCRIPT type="text/javascript">
+$(function(){
+	//得到焦点
+	$("#password").focus(function(){
+		$("#left_hand").animate({
+			left: "330",
+			top: " -36"
+		},{step: function(){
+			if(parseInt($("#left_hand").css("left"))>140){
+				$("#left_hand").attr("class","left_hand");
+			}
+		}}, 2000);
+		$("#right_hand").animate({
+			right: "-244",
+			top: "-36px"
+		},{step: function(){
+			if(parseInt($("#right_hand").css("right"))> -70){
+				$("#right_hand").attr("class","right_hand");
+			}
+		}}, 2000);
+	});
+	//失去焦点
+	$("#password").blur(function(){
+		$("#left_hand").attr("class","initial_left_hand");
+		$("#left_hand").attr("style","left:100px;top:-12px;");
+		$("#right_hand").attr("class","initial_right_hand");
+		$("#right_hand").attr("style","right:-112px;top:-12px");
+	});
+});
+function bigImg(x)
+{
+if (event && event.stopPropagation)
+            event.stopPropagation()
+        else
+            window.event.cancelBubble=true
+$("#left_hand").animate({
+			left: "330",
+			top: " -36"
+		},{step: function(){
+			if(parseInt($("#left_hand").css("left"))>320){
+				$("#left_hand").attr("class","left_hand");
+			}
+		}}, 2000);
+		$("#right_hand").animate({
+			right: "-244",
+			top: "-36px"
+		},{step: function(){
+			if(parseInt($("#right_hand").css("right"))> -250){
+				$("#right_hand").attr("class","right_hand");
+			}
+		}}, 2000);
+}
+
+function normalImg(x)
+{
+		if (event && event.stopPropagation)
+            event.stopPropagation();
+        else
+            window.event.cancelBubble=true;
+		event.stopPropagation();
+        $("#left_hand").attr("class","initial_left_hand");
+		$("#left_hand").attr("style","left:280px;top:-10px;");
+		$("#right_hand").attr("class","initial_right_hand");
+		$("#right_hand").attr("style","right:-292px;top:-10px");
+}
+</SCRIPT>
+<body>
+<div class="btm_border">
+<div class="h_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+			<h1><a href="{% url 'indexstudent' %}"><img src="../../../static/images/log3.jpg" alt=""></a></h1>
+		</div>
+		<div class="social-icons">
+			<ul>
+			<br/>
+			     <li><a class="facebook" href="#" target="_blank"> </a></li>
+			     <li><a class="twitter" href="#" target="_blank"></a></li>
+			     <li><a class="googleplus" href="#" target="_blank"></a></li>
+			     <li><a class="pinterest" href="#" target="_blank"></a></li>
+			     <li><a class="dribbble" href="#" target="_blank"></a></li>
+			     <li><a class="vimeo" href="#" target="_blank"></a></li>
+		   </ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class='h_btm'>
+		<div class='cssmenu'>
+			<ul>
+			    <li><a href="{% url 'indexstudent' %}"><span>主页</span></a></li>
+			    <li><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
+			    <li class="active"><a href="{% url 'student_course_list'%}"><span>选课</span></a></li>
+			    <li><a href="{% url 'show_scores' %}"><span>成绩</span></a></li>
+			    <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
+			 	<div class="clear"></div>
+			 </ul>
+	</div>
+	<div class="search">
+    	<form>
+    		<input type="text" value="">
+    		<input type="submit" value="">
+    	</form>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+</div>
+</div>
+<!--main-->
+<div class="main_btm">
+<div class="wrap">
+<div class="main">
+	<div br class="about-us">
+		<div class="about-header">
+			<h3 ALIGN="CENTER">选课修改</h3>
+			<div class="clear"> </div>
+		</div>
+		</br>
+		</br>
+        </br>
+		</br>
+		<DIV style="width: 165px; height: 96px; position: absolute;">
+<DIV class="tou"></DIV>
+			<DIV class="initial_left_hand" id="left_hand"></DIV>
+<DIV class="initial_right_hand" id="right_hand"></DIV></DIV>
+</DIV>
+		<div id="stylized" class="myform">
+             <h1>课程信息</h1>
+			</br>
+			<div >
+               <table >
+               <tr ALIGN="LEFT">
+				   <td HEIGHT=40 WIDTH=100 ></td>
+				   <td HEIGHT=40 WIDTH=100 >课程名</td>
+                <td HEIGHT=40 WIDTH=50 >{{ md.course_name }}</td>
+                  </tr>
+                     <tr>
+						  <td HEIGHT=10 WIDTH=100></td>
+						 <td HEIGHT=10 WIDTH=100>上课时间</td>
+               <td HEIGHT=10 WIDTH=100>{{ md.course_week }},{{ md.course_time }}</td>
+              </tr>
+          </table>
+				</div>
+            <div class="clear"> </div>
+			</br>
+			</br>
+			<SPAN style="float: right;">
+			<p>
+               <a onmouseover="bigImg(this)" style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="{% url 'course_add' id=md.id %}">添加课程</a>
+			    <a  onmouseover="normalImg(this)"  style="background: rgb(0, 142, 173);padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" href="{% url 'course_delete' id=md.id %}">退选课程</a>
+			    <a style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"href="{% url 'student_course_list'%}">返回</a>
+			</p>
+			</SPAN>
+                <div class="spacer"></div>
+
+           </div>
+
+
+					<div class="specials">
+
+	</div>
+</div>
+
+
+</div>
+</div>
+
+<div class="messages">
+{%for m in messages%}
+	<p>{{m}}</p>
+{%endfor%}
+</div>
+<!--footer-->
+<div class="footer-bg">
+<div class="wrap">
+<div class="footer">
+  <div class="box1">
+	<h4 class="btm">年级概括</h4>
+	<p> 一般大一的课程大部分为公共基础课，大二大三的课程为专业基础课和专业主干课，大四则开始做毕业设计和进行实习，课程很少。</p>
+	<p>当遇到问题时，可及时联系网络管理中心，我们会为广大学生朋友们提供力所能及的帮助。</p>
+  </div>
+   <div class="box1">
+	<h4 class="btm">课程种类</h4>
+	<nav>
+		<ul>
+			<p>大学的课程分为必修课和选修课两大类,选修课又分为限制性选修课和非限制性选修课。 </p>
+			<p>按专业划分，分为公共课和专业课。</p>
+			<p>公共课又分为公共必修课和公共选修课，专业课又分为专业基础课和专业主干课。 </p>
+				    </ul>
+	</nav>
+	</div>
+	<div class="box1">
+		<h4 class="btm">学校信息</h4>
+		<div class="box1_address">
+			<p>地址：吉林省长春市前进大街2699号</p>
+            <p>信息管理：吉林大学发展规划处 </p>
+            <p>技术维护：吉林大学网络中心 </p>
+            <p>管理员信箱：zygl@jlu.edu.cn</p>
+            <p>管理员QQ：921709443</p>
+		</div>
+	</div>
+				<div class="clear"></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<!--footer1-->
+<div class="ftr-bg">
+	<div class="wrap">
+		<div class="footer">
+		<div class="copy">
+			<p class="w3-link">&copy; Copyright &copy; 2013.Company name All rights reserved.</p>
+		</div>
+		<div class="clear"></div>
+	</div>
+	</div>
+</div>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>
