@@ -58,7 +58,7 @@ class Course(models.Model):
         return self.course_name
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['course_name']
+    list_display = ['course_name','course_week','course_time','course_price','course_term']
 
 
 ScoreChoice = (

@@ -81,10 +81,6 @@ padding:20px;
 /* ———– stylized ———– */
 
 
-#stylized{
-border:solid 2px #b7ddf2;
-background:#ebf4fb;
-}
 
 #stylized h1 {
 font-size:16px;
@@ -147,6 +143,79 @@ color:#ff0000;
 .blue{
 color:#0000FF;
 }
+#studentName{
+    position:absolute;
+    left:10px;
+    top:20px;
+}
+#studentName tr{
+        width:200px;
+        height:40px;
+        background-color: rgb(235,244,251);
+        text-align: center;
+        line-height: 40px;
+    }
+    #studentName td{
+        width:200px;
+        height:40px;
+        background-color: rgb(235,244,251);
+        text-align: center;
+        line-height: 40px;
+    }
+#studentScore{
+    position: absolute;
+    left:220px;
+    top:65px;
+
+}
+#title{
+    position:absolute;
+    font-size:28px;
+    font-weight: 400;
+    top:28px;
+    left:280px;
+}
+#studentScore >tbody{
+    width: 200px;
+}
+#studentScore label{
+    padding-top: 10px;
+    text-align: center;
+    font-size:20px;
+    line-height: 20px;
+    width:80px;
+    height:20px;
+
+}
+#studentScore select{
+    width:80px;
+    height:20px;
+    line-height: 40px;
+}
+#student{
+    font-size:28px;
+    font-weight: 400;
+}
+
+    #stylized{
+        position: absolute;
+        left:750px;
+        top:310px;
+        overflow: auto;
+        height:300px;
+        border:solid 2px #b7ddf2;
+        background:#ebf4fb;
+
+    }
+    .footer-bg{
+        position: absolute;
+        bottom: 0;
+    }
+    input[type="submit"]{
+        position: absolute;
+        left:110px;
+        bottom:50px;
+    }
 </style>
 
 <body>
@@ -205,7 +274,7 @@ color:#0000FF;
         </br>
 		</br>
 
-		<DIV style="width: 165px; height: 96px; position: absolute;">
+		<DIV style="width: 165px; height: 96px; position: absolute;left:450px;top:307px;">
 <DIV class="tou"></DIV>
 			<DIV class="initial_left_hand" id="left_hand"></DIV>
 <DIV class="initial_right_hand" id="right_hand"></DIV></DIV>
@@ -215,28 +284,35 @@ color:#0000FF;
              <h1>成绩信息</h1>
 			</br>
 			<div ALIGN="CENTER" >
-
-               <table  VALIGN="TOP">
-                       <tr  ALIGN="LEFT">
-						    <td  HEIGHT=40 WIDTH=50></td>
-            <td  HEIGHT=40 WIDTH=100>学生</td>
-                 <td  WIDTH=100 HEIGHT=40>分数</td>
-          </tr>
-              {% for st in students %}
-             <tr  ALIGN="LEFT">
-				 <td  HEIGHT=40 WIDTH=50></td>
-            <td  HEIGHT=40 WIDTH=100>{{ st }}</td>
-
-                 <td  WIDTH=100 HEIGHT=40></td>
-          </tr>
-         {% endfor %}
-          </table>
-				<form action="/set_scores/{{ id }}" method="post">{% csrf_token %}
-        {{ ScoreFormSet.management_form }}
-        {{ formset }}
-    <input type="submit" value="Submit" />
-    </form>
-				</div>
+                <div id="title">Score</div>
+               <table  VALIGN="TOP" id="studentName">
+                   <tr  ALIGN="LEFT">
+                        <td  id="student">学生</td>
+                   </tr>
+                   {% for st in students %}
+                      <tr> <td >{{ st }}</td></tr>
+                       {% endfor %}
+{#                   <tr  ALIGN="LEFT">#}
+{#                        <form action="/set_scores/{{ id }}" method="post">{% csrf_token %}#}
+{#                    {{ ScoreFormSet.management_form }}#}
+{#                            {{ formset.management_form }}#}
+{#                            {% for form in formset %}#}
+{#                            <td HEIGHT=40 WIDTH=80>{{ form }}</td>#}
+{#                            {% endfor %}#}
+{#                            <input type="submit" value="Submit" />#}
+{#                        </form>#}
+{#                    </tr>#}
+               </table>
+                <form action="/set_scores/{{id}}/" method="post">{% csrf_token %}
+                {{ formset.management_form }}
+                    <table id="studentScore">
+                        {% for form in formset%}
+                        {{ form }}
+                        {% endfor %}
+                    </table>
+                 <input type="submit" value="Submit" />
+                </form>
+            </div>
             <div class="clear"> </div>
                 <div class="spacer"></div>
 
