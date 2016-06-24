@@ -50,6 +50,8 @@ def course_add(request, id):
             messages.error(request, '您已选择学习此课程！')
         elif student.course_set.filter(course_term=course.course_term,course_week=course.course_week,course_time=course.course_time):
             messages.error(request, '该课程与其他课程时间冲突！')
+        elif len(course.course_choose) == 10:
+            messages.error(request,'该课程选课人数已超过10人！')
         else:
             course.course_choose.add(student)
             course.save()
@@ -60,9 +62,11 @@ def course_add(request, id):
         verify = Course.objects.filter(id=id, course_teach=teacher)
         if verify:
             messages.error(request, '您已选择教授此课程！')
+        elif course.course_teach != None:
+            messages.error(request,'已有其他教师教授此课！')
         elif teacher.course_set.filter(course_term=course.course_term, course_week=course.course_week,course_time=course.course_time):
             messages.error(request, '该课程与其他课程时间冲突！')
-        else:
+        else :
             course.course_teach = teacher
             course.save()
             messages.success(request, "选课成功！")

@@ -217,9 +217,10 @@ color:#0000FF;
         bottom:50px;
     }
     a[type="return"] {
+        width:80px;
         position: absolute;
-        left: 110px;
-        bottom: 10px;
+        left: 220px;
+        bottom: 70px;
     }
 </style>
 
@@ -290,7 +291,7 @@ color:#0000FF;
              <h1>成绩信息</h1>
 			</br>
 			<div ALIGN="CENTER" >
-                <div id="title">Score</div>
+                <div id="title">成绩</div>
                <table  VALIGN="TOP" id="studentName">
                    <tr  ALIGN="LEFT">
                         <td  id="student">学生</td>
@@ -318,7 +319,7 @@ color:#0000FF;
                     </table>
                 <SPAN style="float: right;">
 			<p>
-                 <input style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" type="submit" value="Submit" />
+                 <input style="background: rgb(20, 142, 173); padding: 7px 10px;width:80px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" type="submit" value="Submit" class="submit"/>
                 <a type="return" style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"  href="{% url 'show_my_course'%}">返回</a>
                     </p>
                     </SPAN>
