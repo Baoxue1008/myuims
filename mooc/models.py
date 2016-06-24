@@ -41,7 +41,8 @@ class TeacherAdmin(admin.ModelAdmin):
 class Course(models.Model):
     course_name = models.CharField(max_length=50)
     course_choose = models.ManyToManyField(Student, blank=True)
-    course_teach = models.ManyToManyField(Teacher, blank=True)
+    #course_teach = models.ManyToManyField(Teacher, blank=True)
+    course_teach = models.ForeignKey(Teacher,blank=True,null=True)
 
 
     WEEK_CHOICE = (('Mon','Mon'),('Tue','Tue'), ('Wed','Wed') ,('Thur','Thur'),('Fri','Fri'),('Sat','Sat'),('Sun','Sun'))
@@ -58,7 +59,7 @@ class Course(models.Model):
         return self.course_name
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['course_name','course_week','course_time','course_price','course_term']
+    list_display = ['course_name','course_week','course_time','course_price','course_term','course_teach']
 
 
 ScoreChoice = (

@@ -216,6 +216,11 @@ color:#0000FF;
         left:110px;
         bottom:50px;
     }
+    a[type="return"] {
+        position: absolute;
+        left: 110px;
+        bottom: 10px;
+    }
 </style>
 
 <body>
@@ -310,7 +315,12 @@ color:#0000FF;
                         {{ form }}
                         {% endfor %}
                     </table>
-                 <input type="submit" value="Submit" />
+                <SPAN style="float: right;">
+			<p>
+                 <input style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" type="submit" value="Submit" />
+                <a type="return" style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"  href="{% url 'show_my_course'%}">返回</a>
+                    </p>
+                    </SPAN>
                 </form>
             </div>
             <div class="clear"> </div>

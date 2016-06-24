@@ -63,7 +63,7 @@ def course_add(request, id):
         elif teacher.course_set.filter(course_term=course.course_term, course_week=course.course_week,course_time=course.course_time):
             messages.error(request, '该课程与其他课程时间冲突！')
         else:
-            course.course_teach.add(teacher)
+            course.course_teach = teacher
             course.save()
             messages.success(request, "选课成功！")
     return HttpResponseRedirect(dir)
@@ -91,7 +91,7 @@ def course_delete(request, id):
         if not verify:
             messages.error(request, '您未选择教授此课程')
         else:
-            course.course_teach.remove(teacher)
+            course.course_teach = None
             course.save()
             messages.success(request, "取消授课成功")
     return HttpResponseRedirect(dir)
@@ -156,7 +156,7 @@ def set_scores(request,id):
                         score.save()
                     cnt += 1
             messages.success(request,'修改成绩成功')
-        return HttpResponseRedirect('/index/show/')
+        return HttpResponseRedirect('/accounts/login/')
     else:
         return render(request,'set_scores.html', {'formset': ScoreFormSet(), 'students':students,'id': id})
 

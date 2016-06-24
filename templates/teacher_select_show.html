@@ -220,7 +220,10 @@ color:#0000FF;
                        <tr  ALIGN="LEFT">
 						    <td  HEIGHT=40 WIDTH=50></td>
             <td  HEIGHT=40 WIDTH=100>课程名</td>
-                 <td  WIDTH=100 HEIGHT=40>上课时间</td>
+                 <td  WIDTH=100 HEIGHT=40>时间</td>
+                            <td  WIDTH=100 HEIGHT=40>课节</td>
+                            <td  WIDTH=100 HEIGHT=40>学期</td>
+
           </tr>
 
           {#{{ my_course }}#}
@@ -228,7 +231,9 @@ color:#0000FF;
              <tr  ALIGN="LEFT">
 				 <td  HEIGHT=40 WIDTH=50></td>
             <td  HEIGHT=40 WIDTH=100><a href="{% url 'set_scores' id=mc.id %}">{{ mc.course_name }}</a></td>
-                 <td  WIDTH=100 HEIGHT=40>{{ mc.course_week }},{{ mc.course_time }}</td>
+                 <td  WIDTH=100 HEIGHT=40>{{ mc.course_week }}</td>
+             <td  WIDTH=100 HEIGHT=40>{{ mc.course_time }}</td>
+               <td  WIDTH=100 HEIGHT=40>{{ mc.course_term}}</td>
           </tr>
          {% endfor %}
           </table>

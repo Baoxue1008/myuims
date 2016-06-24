@@ -223,6 +223,7 @@ color:#0000FF;
             <td  HEIGHT=40 WIDTH=100>课程名</td>
                  <td  WIDTH=100 HEIGHT=40>教师名</td>
 				 <td  WIDTH=100 HEIGHT=40>成绩</td>
+                           <td  WIDTH=100 HEIGHT=40>学期</td>
           </tr>
                     {% for sc in my_scores %}
              <tr  ALIGN="LEFT">
@@ -230,6 +231,7 @@ color:#0000FF;
             <td  HEIGHT=40 WIDTH=100>{{  sc.course_id}}</td>
                  <td  HEIGHT=40 WIDTH=100>{{  sc.teacher_id}}</td>
 				 <td  HEIGHT=40 WIDTH=100>{{  sc.value}}</td>
+                 <td  HEIGHT=40 WIDTH=100>{{  sc.course_id.course_term}}</td>
           </tr>
          {% endfor %}
           </table>

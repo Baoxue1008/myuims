@@ -218,26 +218,35 @@ color:#0000FF;
 			<div ALIGN="CENTER" >
 
                <table  VALIGN="TOP">
-                       <tr  ALIGN="LEFT">
-						    <td  HEIGHT=40 WIDTH=50></td>
-            <td  HEIGHT=40 WIDTH=100>课程名</td>
-                 <td  WIDTH=100 HEIGHT=40>上课时间</td>
-          </tr>
+                           <tr  ALIGN="LEFT">
+                           <td  HEIGHT=40 WIDTH=50></td>
+                           <td  HEIGHT=40 WIDTH=100>课程名</td>
+                           <td  WIDTH=100 HEIGHT=40>时间</td>
+                           <td  WIDTH=100 HEIGHT=40>课节</td>
+                           <td  WIDTH=100 HEIGHT=40>学期</td>
+                           <td  WIDTH=100 HEIGHT=40>讲师</td>
+                           <td  WIDTH=100 HEIGHT=40>价格</td>
+                </tr>
 
           {#{{ my_course }}#}
                     {% for mc in my_course%}
              <tr  ALIGN="LEFT">
 				 <td  HEIGHT=40 WIDTH=50></td>
             <td  HEIGHT=40 WIDTH=100>{{ mc.course_name }}</td>
-                 <td  WIDTH=100 HEIGHT=40>{{ mc.course_week }},{{ mc.course_time }}</td>
+                 <td  WIDTH=100 HEIGHT=40>{{ mc.course_week }}</td>
+                 <td  WIDTH=100 HEIGHT=40>{{ mc.course_time }}</td>
+                   <td  WIDTH=100 HEIGHT=40>{{ mc.course_term}}</td>
+                 <td  WIDTH=100 HEIGHT=40>{{ mc.course_teach }}</td>
+                    <td  WIDTH=100 HEIGHT=40>{{ mc.course_price}}</td>
           </tr>
          {% endfor %}
 
           </table>
 
 				</div>
-			<h1>总价格</h1>
+            <h1>总价格</h1>
 			<div ALIGN="CENTER">
+
 				<h1>{{ sumPrice }}</h1>
 				</div>
             <div class="clear"> </div>

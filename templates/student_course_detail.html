@@ -282,7 +282,7 @@ function normalImg(x)
 </DIV>
 		<div id="stylized" class="myform">
              <h1>课程信息</h1>
-			</br>
+
 			<div >
                <table >
                <tr ALIGN="LEFT">
@@ -291,12 +291,28 @@ function normalImg(x)
                 <td HEIGHT=40 WIDTH=50 >{{ md.course_name }}</td>
                   </tr>
                      <tr>
-						  <td HEIGHT=10 WIDTH=100></td>
-						 <td HEIGHT=10 WIDTH=100>上课时间</td>
-               <td HEIGHT=10 WIDTH=100>{{ md.course_week }},{{ md.course_time }}</td>
+						  <td HEIGHT=40 WIDTH=100></td>
+						 <td HEIGHT=40 WIDTH=100>上课时间</td>
+               <td HEIGHT=40 WIDTH=100>{{ md.course_week }},第{{ md.course_time }}节课</td>
               </tr>
+                   <tr ALIGN="LEFT">
+				   <td HEIGHT=40 WIDTH=100 ></td>
+				   <td HEIGHT=40 WIDTH=100 >学期</td>
+                <td HEIGHT=40 WIDTH=50 >{{ md.course_term }}</td>
+                  </tr>、
+                   <tr ALIGN="LEFT">
+				   <td HEIGHT=40 WIDTH=100 ></td>
+				   <td HEIGHT=40 WIDTH=100 >讲师</td>
+                <td HEIGHT=40 WIDTH=50 >{{ md.course_teach}}</td>
+                  </tr>
+                   <tr ALIGN="LEFT">
+				   <td HEIGHT=10 WIDTH=100 ></td>
+				   <td HEIGHT=10 WIDTH=100 >价格</td>
+                <td HEIGHT=10 WIDTH=50 >{{ md.course_price}}</td>
+                  </tr>
           </table>
 				</div>
+
             <div class="clear"> </div>
 			</br>
 			</br>
@@ -308,7 +324,11 @@ function normalImg(x)
 			</p>
 			</SPAN>
                 <div class="spacer"></div>
-
+             <div>
+            {%  for i in messages %}
+                <h1>{{ i }}</h1>
+            {% endfor %}
+            </div>
            </div>
 
 
@@ -321,11 +341,7 @@ function normalImg(x)
 </div>
 </div>
 
-<div class="messages">
-{%for m in messages%}
-	<p>{{m}}</p>
-{%endfor%}
-</div>
+
 <!--footer-->
 <div class="footer-bg">
 <div class="wrap">
