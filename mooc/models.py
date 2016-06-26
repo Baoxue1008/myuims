@@ -82,7 +82,11 @@ class ScoreAdmin(admin.ModelAdmin):
     list_display = ['student_id','teacher_id','course_id','value']
 
 
+class Status(models.Model):
+    CurrentStatus = models.NullBooleanField(max_length=2,blank=True,null=True)
 
+class StatusAdmin(admin.ModelAdmin):
+    list_display = ['CurrentStatus']
 
 
 

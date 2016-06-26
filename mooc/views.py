@@ -40,10 +40,14 @@ def teacher_course_detail(request, id):
 
 @login_required
 def course_add(request, id):
+    current = Status.objects.all()[0].CurrentStatus
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
     if len(student) != 0:
         dir = '/mooc/student/' + id
+        if current == False:
+            messages.error(request, '选课阶段已经结束！')
+            return HttpResponseRedirect(dir)
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
         if verify:
@@ -58,6 +62,9 @@ def course_add(request, id):
             messages.success(request, "选课成功！")
     else:
         dir = '/mooc/teacher/' + id
+        if current == False:
+            messages.error(request, '选课阶段已经结束！')
+            return HttpResponseRedirect(dir)
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
         if verify:
@@ -75,10 +82,15 @@ def course_add(request, id):
 
 @login_required
 def course_delete(request, id):
+    current = Status.objects.all()[0].CurrentStatus
+
     student = Student.objects.filter(userid=request.user)
     course = Course.objects.get(id=id)
     if len(student) != 0:
         dir = '/mooc/student/' + id
+        if current == False:
+            messages.error(request, '选课阶段已经结束！')
+            return HttpResponseRedirect(dir)
         student = student[0]
         verify = Course.objects.filter(id=id, course_choose=student)
         if not verify:
@@ -89,6 +101,9 @@ def course_delete(request, id):
             messages.success(request, "删除课程成功")
     else:
         dir = '/mooc/teacher/' + id
+        if current == False:
+            messages.error(request, '选课阶段已经结束！')
+            return HttpResponseRedirect(dir)
         teacher = Teacher.objects.get(userid=request.user)
         verify = Course.objects.filter(id=id, course_teach=teacher)
 
@@ -110,19 +125,40 @@ def show_scores(request):
         return HttpResponse('只有学生可以操作')
 
 
+def validCourse(course):
+    noteach = Course.objects.filter(course_teach__isnull=True)
+    allCourse = Course.objects.all()
+    insuffStu = [c.course_name for c in allCourse if c.course_choose.count() < 3]
+
+    if course in noteach or course in insuffStu:
+        return False
+    else:
+        return True
+
 
 
 @login_required
 def show_my_course(request):
     student = Student.objects.filter(userid=request.user)
+    current = Status.objects.all()[0].CurrentStatus
     if len(student) != 0:
         student = student[0]
         my_course = student.course_set.filter(course_term=CURRENT_TERM).order_by('id')
+        if current == False:
+            for c in my_course:
+                if validCourse(c) == False:
+                    c.course_choose.remove(student)
+                    c.save()
         sumPrice = sum([c.course_price for c in my_course])
         return render(request,'student_select_show.html', {'my_course': my_course,'sumPrice':sumPrice})
     else:
         teacher = Teacher.objects.get(userid=request.user)
         my_course = teacher.course_set.filter(course_term=CURRENT_TERM).order_by('id')
+        if current == False:
+            for c in my_course:
+                if validCourse(c) == False:
+                    c.course_teach.remove(teacher)
+                    c.save()
         return render(request,'teacher_select_show.html', {'my_course': my_course})
 
 
@@ -134,6 +170,10 @@ def show_who_choose_this_class(request, id):
 
 @login_required
 def set_scores(request,id):
+    current = Status.objects.all()[0].CurrentStatus
+    if current == True:
+        messages.error(request,"选课阶段还没结束!")
+        HttpResponse('index/show/')
     course = Course.objects.get(id=id)
     students = course.course_choose.all()
     stunum = len(students)
