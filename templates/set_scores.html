@@ -78,6 +78,12 @@ width:400px;
 padding:20px;
 }
 
+.warning{
+    position: absolute;
+    left:150px;
+    top:300px;
+}
+
 /* ———– stylized ———– */
 
 
@@ -249,7 +255,7 @@ color:#0000FF;
 		<div class='cssmenuz'>
 			<ul>
 			    <li><a href="{% url 'indexteacher' %}"><span>主页</span></a></li>
-			    <li class="active"><a href="{% url 'show_my_course' %}"><span>课表</span></a></li>
+			    <li class="active"><a href="{% url 'show_my_course' %}"><span>已选课表/成绩登入</span></a></li>
 			    <li><a href="{% url 'teacher_course_list'%}"><span>授课</span></a></li>
                 <li><a href="{% url 'course_canceled' %}"><span>公告</span></a></li>
 			    <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
@@ -268,7 +274,7 @@ color:#0000FF;
 </div>
 </div>
 <!--main-->
-<div class="main_btm">
+<div class="main_btm" style="height:500px;">
 <div class="wrap">
 <div class="main">
 	<div br class="about-us">
@@ -299,16 +305,11 @@ color:#0000FF;
                    {% for st in students %}
                       <tr> <td >{{ st }}</td></tr>
                        {% endfor %}
-{#                   <tr  ALIGN="LEFT">#}
-{#                        <form action="/set_scores/{{ id }}" method="post">{% csrf_token %}#}
-{#                    {{ ScoreFormSet.management_form }}#}
-{#                            {{ formset.management_form }}#}
-{#                            {% for form in formset %}#}
-{#                            <td HEIGHT=40 WIDTH=80>{{ form }}</td>#}
-{#                            {% endfor %}#}
-{#                            <input type="submit" value="Submit" />#}
-{#                        </form>#}
-{#                    </tr>#}
+
+                      {%  for i in messages %}
+                         <h1 class="warning">{{ i }}</h1>
+                      {% endfor %}
+
                </table>
                 <form action="/set_scores/{{id}}/" method="post">{% csrf_token %}
                 {{ formset.management_form }}
@@ -325,6 +326,7 @@ color:#0000FF;
                     </SPAN>
                 </form>
             </div>
+
             <div class="clear"> </div>
                 <div class="spacer"></div>
 
@@ -332,7 +334,7 @@ color:#0000FF;
 					<div class="specials">
 
 	</div>
-
+    <div>
 </div>
 
 </div>
@@ -375,7 +377,7 @@ color:#0000FF;
 	<div class="wrap">
 		<div class="footer">
 		<div class="copy">
-			<p class="w3-link">&copy; Copyright &copy; 2013.Company name All rights reserved.</p>
+			<p class="w3-link"></p>
 		</div>
 		<div class="clear"></div>
 	</div>

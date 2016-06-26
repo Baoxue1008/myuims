@@ -22,5 +22,4 @@ urlpatterns = [
     url(r'^teacher/(?P<id>\d+)/$', teacher_course_detail, name='teacher_course_detail'),
     url(r'^(?P<id>\d+)/add$', course_add, name='course_add'),
     url(r'^(?P<id>\d+)/delete$', course_delete, name='course_delete'),
-    url(r'^(?P<id>\d+)/mates$', show_who_choose_this_class, name='show_who_choose_this_class'),
 ]

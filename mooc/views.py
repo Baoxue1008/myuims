@@ -50,7 +50,7 @@ def course_add(request, id):
             messages.error(request, '您已选择学习此课程！')
         elif student.course_set.filter(course_term=course.course_term,course_week=course.course_week,course_time=course.course_time):
             messages.error(request, '该课程与其他课程时间冲突！')
-        elif len(course.course_choose) == 10:
+        elif course.course_choose.count() == 10:
             messages.error(request,'该课程选课人数已超过10人！')
         else:
             course.course_choose.add(student)
@@ -160,7 +160,8 @@ def set_scores(request,id):
                         score.save()
                     cnt += 1
             messages.success(request,'修改成绩成功')
-        return HttpResponseRedirect('/accounts/login/')
+        #return HttpResponseRedirect('/accounts/login/')
+        return render(request, 'set_scores.html', {'formset': ScoreFormSet(), 'students': students, 'id': id})
     else:
         return render(request,'set_scores.html', {'formset': ScoreFormSet(), 'students':students,'id': id})
 
