@@ -128,8 +128,8 @@ def show_scores(request):
 def validCourse(course):
     noteach = Course.objects.filter(course_teach__isnull=True)
     allCourse = Course.objects.all()
-    insuffStu = [c.course_name for c in allCourse if c.course_choose.count() < 3]
-
+    insuffStu = [c for c in allCourse if c.course_choose.count() < 3]
+    print noteach,insuffStu
     if course in noteach or course in insuffStu:
         return False
     else:
@@ -146,6 +146,7 @@ def show_my_course(request):
         my_course = student.course_set.filter(course_term=CURRENT_TERM).order_by('id')
         if current == False:
             for c in my_course:
+                print c,validCourse(c)
                 if validCourse(c) == False:
                     c.course_choose.remove(student)
                     c.save()
@@ -157,7 +158,7 @@ def show_my_course(request):
         if current == False:
             for c in my_course:
                 if validCourse(c) == False:
-                    c.course_teach.remove(teacher)
+                    c.course_teach = None
                     c.save()
         return render(request,'teacher_select_show.html', {'my_course': my_course})
 
@@ -173,9 +174,20 @@ def set_scores(request,id):
     current = Status.objects.all()[0].CurrentStatus
     if current == True:
         messages.error(request,"选课阶段还没结束!")
-        HttpResponse('index/show/')
+        return HttpResponseRedirect('/index/show')
     course = Course.objects.get(id=id)
     students = course.course_choose.all()
+
+
+    alscore = []
+    for s in students:
+        sc = Score.objects.filter(student_id=s,course_id=course)
+        if len(sc) == 0:
+            alscore.append('Empty')
+        else:
+            alscore.append(sc[0].value)
+
+
     stunum = len(students)
     ScoreFormSet = formset_factory(ScoreForm,extra = stunum)
 
@@ -201,7 +213,7 @@ def set_scores(request,id):
                 cnt += 1
             messages.success(request,'修改成绩成功')
         #return HttpResponseRedirect('/accounts/login/')
-        return render(request, 'set_scores.html', {'formset': ScoreFormSet(), 'students': students, 'id': id})
+        return render(request, 'set_scores.html', {'formset': ScoreFormSet(), 'students': students, 'id': id, 'oldScores':alscore})
     else:
-        return render(request,'set_scores.html', {'formset': ScoreFormSet(), 'students':students,'id': id})
+        return render(request,'set_scores.html', {'formset': ScoreFormSet(), 'students':students,'id': id,'oldScores':alscore})
 

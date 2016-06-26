@@ -177,7 +177,6 @@ color:#0000FF;
 			    <li class="active"><a href="{% url 'show_my_course' %}"><span>已选课表/成绩登入</span></a></li>
 			    <li><a href="{% url 'teacher_course_list'%}"><span>授课</span></a></li>
                 <li><a href="{% url 'course_canceled' %}"><span>公告</span></a></li>
-
 			    <li class='last'><a href="{% url 'logout' %}"><span>登出</span></a></li>
 			 	<div class="clear"></div>
 			 </ul>
@@ -229,7 +228,7 @@ color:#0000FF;
           </tr>
 
           {#{{ my_course }}#}
-                    {% for mc in my_course%}
+			 {% for mc in my_course%}
              <tr  ALIGN="LEFT">
 				 <td  HEIGHT=40 WIDTH=50></td>
             <td  HEIGHT=40 WIDTH=100><a href="{% url 'set_scores' id=mc.id %}">{{ mc.course_name }}</a></td>
@@ -239,6 +238,11 @@ color:#0000FF;
           </tr>
          {% endfor %}
           </table>
+				<DIV>
+					{% for m in messages %}
+					<H1>{{ m }}</H1>
+					{% endfor %}
+				</DIV>
 				</div>
             <div class="clear"> </div>
                 <div class="spacer"></div>
