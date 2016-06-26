@@ -158,7 +158,7 @@ def set_scores(request,id):
                         # 新建成绩
                         score = Score(student_id = students[cnt],teacher_id = teacher,course_id = course, value = form.cleaned_data['score'])
                         score.save()
-                    cnt += 1
+                cnt += 1
             messages.success(request,'修改成绩成功')
         #return HttpResponseRedirect('/accounts/login/')
         return render(request, 'set_scores.html', {'formset': ScoreFormSet(), 'students': students, 'id': id})
