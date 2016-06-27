@@ -179,13 +179,6 @@ def set_scores(request,id):
     students = course.course_choose.all()
 
 
-    alscore = []
-    for s in students:
-        sc = Score.objects.filter(student_id=s,course_id=course)
-        if len(sc) == 0:
-            alscore.append('Empty')
-        else:
-            alscore.append(sc[0].value)
 
 
     stunum = len(students)
@@ -213,7 +206,21 @@ def set_scores(request,id):
                 cnt += 1
             messages.success(request,'修改成绩成功')
         #return HttpResponseRedirect('/accounts/login/')
+        alscore = []
+        for s in students:
+            sc = Score.objects.filter(student_id=s, course_id=course)
+            if len(sc) == 0:
+                alscore.append('Empty')
+            else:
+                alscore.append(sc[0].value)
         return render(request, 'set_scores.html', {'formset': ScoreFormSet(), 'students': students, 'id': id, 'oldScores':alscore})
     else:
+        alscore = []
+        for s in students:
+            sc = Score.objects.filter(student_id=s, course_id=course)
+            if len(sc) == 0:
+                alscore.append('Empty')
+            else:
+                alscore.append(sc[0].value)
         return render(request,'set_scores.html', {'formset': ScoreFormSet(), 'students':students,'id': id,'oldScores':alscore})
 
