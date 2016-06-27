@@ -19,7 +19,7 @@ font-size:15px;
 	height: 92px;
 	position: absolute;
 	top: -85px;
-	left: 320px;
+	left: 220px;
 }
 .initial_left_hand{
 	background: url("../../static/images/hand.png") no-repeat;
@@ -27,7 +27,7 @@ font-size:15px;
 	height: 20px;
 	position: absolute;
 	top: -10px;
-	left: 280px;
+	left: 180px;
 }
 .initial_right_hand{
 	background: url("../../static/images/hand.png") no-repeat;
@@ -35,7 +35,7 @@ font-size:15px;
 	height: 20px;
 	position: absolute;
 	top: -10px;
-	right: -292px;
+	right: -192px;
 }
 .left_hand{
 	background: url("../../static/images/left_hand.png") no-repeat;
@@ -154,16 +154,30 @@ color:#0000FF;
     left:10px;
     top:20px;
 }
+#oldScores{
+	position:absolute;
+	left:390px;
+	top:73px;
+	width:30px;
+	}
+#oldScores tr{
+	width:40px;
+	height:39px;
+	}
+	#oldScores td{
+		width:40px;
+		height:39px;
+	}
 #studentName tr{
         width:200px;
-        height:40px;
+        height:30px;
         background-color: rgb(235,244,251);
         text-align: center;
         line-height: 40px;
     }
     #studentName td{
         width:200px;
-        height:40px;
+        height:30px;
         background-color: rgb(235,244,251);
         text-align: center;
         line-height: 40px;
@@ -190,12 +204,12 @@ color:#0000FF;
     font-size:20px;
     line-height: 20px;
     width:80px;
-    height:20px;
+    height:25px;
 
 }
 #studentScore select{
     width:80px;
-    height:20px;
+    height:15px;
     line-height: 40px;
 }
 #student{
@@ -205,28 +219,31 @@ color:#0000FF;
 
     #stylized{
         position: absolute;
-        left:750px;
+        left:650px;
         top:310px;
         overflow: auto;
         height:300px;
+		width:400px;
         border:solid 2px #b7ddf2;
         background:#ebf4fb;
+	    overflow:auto;
 
     }
     .footer-bg{
         position: absolute;
         bottom: 0;
     }
-    input[type="submit"]{
+
+	input[type="submit"]{
         position: absolute;
         left:110px;
-        bottom:50px;
+        bottom:0;
     }
     a[type="return"] {
         width:80px;
         position: absolute;
         left: 220px;
-        bottom: 70px;
+        bottom: 20px;
     }
 </style>
 
@@ -319,6 +336,11 @@ color:#0000FF;
                         {% endfor %}
                     </table>
                 <SPAN style="float: right;">
+					<table id="oldScores">
+						{% for form in oldScores%}
+						<tr><td>{{form}}</td></tr>
+						{%endfor%}
+					</table>
 			<p>
                  <input style="background: rgb(20, 142, 173); padding: 7px 10px;width:80px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;" type="submit" value="Submit" class="submit"/>
                 <a type="return" style="background: rgb(20, 142, 173); padding: 7px 10px; border-radius: 4px; border: 1px solid rgb(26, 117, 152); border-image: none; color: rgb(255, 255, 255); font-weight: bold;"  href="{% url 'show_my_course'%}">返回</a>
